@@ -26,8 +26,8 @@ jobs:
           format: table
           exit-code: 1
 
-  codeql-scan:
-    name: Static Analysis - Psalm
+  analysis-scan:
+    name: Static Analysis - PHPStan
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -46,11 +46,10 @@ jobs:
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist
 
-      - name: Install Psalm
-        run: composer require --dev vimeo/psalm
+      - name: Install PHPStan
+        run: composer require --dev phpstan/phpstan
 
-      - name: Initialize Psalm (temporary fallback)
-        run: ./vendor/bin/psalm --init
+      - name: Run PHPStan
+        run: ./vendor/bin/phpstan analyse --level=max --error-format=github
 
-      - name: Run Psalm
-        run: ./vendor/bin/psalm --output-format=github
+      
