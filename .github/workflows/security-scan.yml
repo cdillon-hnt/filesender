@@ -26,7 +26,6 @@ jobs:
           format: table
           exit-code: 1
 
-jobs:
   php-security:
     runs-on: ubuntu-latest
     permissions:
