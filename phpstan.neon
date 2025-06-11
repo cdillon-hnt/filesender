@@ -1,5 +1,10 @@
 parameters:
   level: max
   paths:
+    - classes
+    - config
+    - dev
+    - includes
+    - lib
     - scripts
     - templates
