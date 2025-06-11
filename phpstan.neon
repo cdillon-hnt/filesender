@@ -1,6 +1,5 @@
 parameters:
   level: 3
-  checkMissingPropertyTypehint: false
   reportUnmatchedIgnoredErrors: false
   inferPrivatePropertyTypeFromConstructor: false
   checkMissingVarTagTypehint: false
