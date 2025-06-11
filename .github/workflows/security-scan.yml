@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Trivy
-        uses: aquasecurity/trivy-action@v0.31.0
+        uses: aquasecurity/trivy-action@0.31.0
         with:
           scan-type: fs
           ignore-unfixed: true
@@ -27,7 +27,7 @@ jobs:
           exit-code: 1
 
   codeql-scan:
-    name: Static Analysis - CodeQL
+    name: Static Analysis - Psalm
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -38,14 +38,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2.22.0
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
         with:
-          languages: php
+          php-version: '7.4.33'
 
-      - name: Build application
-        run: |
-          composer install --no-interaction --prefer-dist
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
 
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2.22.0
+      - name: Install Psalm
+        run: composer require --dev vimeo/psalm
+
+      - name: Run Psalm
+        run: ./vendor/bin/psalm --output-format=github
