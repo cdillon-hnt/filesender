@@ -1,5 +1,9 @@
 parameters:
-  level: max
+  level: 3
+  checkMissingPropertyTypehint: false
+  reportUnmatchedIgnoredErrors: false
+  inferPrivatePropertyTypeFromConstructor: false
+  checkMissingVarTagTypehint: false
   paths:
     - classes
     - config
